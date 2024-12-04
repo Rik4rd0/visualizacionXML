@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, CircularProgress, Typography, Grid, Paper } from "@mui/material";
+import { Container, CircularProgress, Typography, Grid } from "@mui/material";
 import DataViewer from "./DataViewer";
 
 function Content({ data }) {
@@ -12,8 +12,14 @@ function Content({ data }) {
               <CircularProgress />
             ) : (
               <Grid container spacing={4}>
-                <Grid item xs={12} md={8}>
-                  <Typography variant="h5" gutterBottom style={{ color: '#3f51b5' }}>
+                <Grid item xs={12}>
+                  <Typography
+                    variant="h5"
+                    gutterBottom
+                    style={{
+                      color: data.documentMetadata?.name === data.documentMetadata?.name.toUpperCase() ? 'red' : '#3f51b5'
+                    }}
+                  >
                     {data.documentMetadata?.name}
                   </Typography>
                   <Typography variant="body1" gutterBottom style={{ color: '#333' }}>
@@ -22,18 +28,6 @@ function Content({ data }) {
                   <div className="scrollable-content">
                     <DataViewer data={data} />
                   </div>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                  <Paper elevation={3} style={{ padding: '20px', backgroundColor: '#f9f9f9' }}>
-                    <Typography variant="h6" style={{ color: '#3f51b5' }}>Comentarios</Typography>
-                    <ul className="list-disc list-inside" style={{ color: '#333' }}>
-                      {data.blocks && data.blocks.map((block, index) => (
-                        block.comments ? block.comments.map((comment, idx) => (
-                          <li key={`${index}-${idx}`}>{comment}</li>
-                        )) : null
-                      ))}
-                    </ul>
-                  </Paper>
                 </Grid>
               </Grid>
             )}

@@ -9,11 +9,11 @@ function App() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/data')
+    fetch('https://backvisualxml.onrender.com')
       .then(response => response.json())
-      .then(data => {
-        console.log(data); 
-        setData(data);
+      .then(responseData => {
+        console.log(responseData); 
+        setData(responseData.data); 
       })
       .catch(error => console.error('Error:', error));
   }, []);
