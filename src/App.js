@@ -9,7 +9,7 @@ function App() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch('https://backvisualxml.onrender.com')
+    fetch('https://backvisualxml.onrender.com/api/data')  // Asegúrate de que la URL sea correcta
       .then(response => response.json())
       .then(responseData => {
         console.log(responseData); 
